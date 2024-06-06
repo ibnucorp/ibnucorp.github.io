@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Website</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .profile-header {
+      background-color: #343a40;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .contact-info a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="profile-header">
+    <div class="container">
+      <h1>John Doe</h1>
+      <p>Web Developer & Designer</p>
+    </div>
+  </header>
+
+  <!-- Profile Section -->
+  <section class="profile-section py-5">
+    <div class="container text-center">
+      <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-image img-fluid">
+      <h2>About Me</h2>
+      <p>
+        Hello! I am John Doe, a passionate web developer and designer with over 5 years of experience.
+        I specialize in creating modern, responsive websites and web applications.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Contact Me</h3>
+          <p>Email: <a href="mailto:john.doe@example.com">john.doe@example.com</a></p>
+          <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+        </div>
+        <div class="col-md-8">
+          <h3>Follow Me</h3>
+          <p>
+            <a href="#">LinkedIn</a> |
+            <a href="#">GitHub</a> |
+            <a href="#">Twitter</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
