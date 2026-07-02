@@ -1,72 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Website</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .profile-header {
-      background-color: #343a40;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-    .profile-image {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-    }
-    .contact-info a {
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: linear-gradient(180deg, #e0f7fa 0%, #ffffff 100%);
+            color: #455a64;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #0277bd; }
+        .repo-card {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #b3e5fc;
+        }
+        a { color: #0288d1; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
 
-  <!-- Header Section -->
-  <header class="profile-header">
-    <div class="container">
-      <h1>John Doe</h1>
-      <p>Web Developer & Designer</p>
-    </div>
-  </header>
+    <h1>My Projects</h1>
+    <div id="repos">Loading repositories...</div>
 
-  <!-- Profile Section -->
-  <section class="profile-section py-5">
-    <div class="container text-center">
-      <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-image img-fluid">
-      <h2>About Me</h2>
-      <p>
-        Hello! I am John Doe, a passionate web developer and designer with over 5 years of experience.
-        I specialize in creating modern, responsive websites and web applications.
-      </p>
-    </div>
-  </section>
+    <script>
+        // Replace 'YOUR_USERNAME' with your actual GitHub username
+        const username = 'ibnucorp'
 
-  <!-- Contact Section -->
-  <section class="contact-section py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h3>Contact Me</h3>
-          <p>Email: <a href="mailto:john.doe@example.com">john.doe@example.com</a></p>
-          <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
-        </div>
-        <div class="col-md-8">
-          <h3>Follow Me</h3>
-          <p>
-            <a href="#">LinkedIn</a> |
-            <a href="#">GitHub</a> |
-            <a href="#">Twitter</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+        async function fetchRepos() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+                const repos = await response.json();
+                const container = document.getElementById('repos');
+                container.innerHTML = '';
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+                repos.forEach(repo => {
+                    // Only show public repos
+                    const div = document.createElement('div');
+                    div.className = 'repo-card';
+                    div.innerHTML = `
+                        <strong><a href="${repo.html_url}" target="_blank">${repo.name}</a></strong><br>
+                        ${repo.description || 'No description.'}
+                        ${repo.has_pages ? `<br><small>👉 <a href="https://${username}.github.io/${repo.name}/" target="_blank">Live Demo</a></small>` : ''}
+                    `;
+                    container.appendChild(div);
+                });
+            } catch (err) {
+                document.getElementById('repos').innerText = 'Failed to load repositories.';
+            }
+        }
+
+        fetchRepos();
+    </script>
 </body>
 </html>
