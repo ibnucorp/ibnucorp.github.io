@@ -41,7 +41,7 @@
                 const repos = await response.json();
                 const container = document.getElementById('repos');
                 container.innerHTML = '';
-
+                const pagesRepos = repos.filter(repo => repo.has_pages);
                 repos.forEach(repo => {
                     // Only show public repos
                     const div = document.createElement('div');
@@ -49,7 +49,7 @@
                     div.innerHTML = `
                         <strong><a href="${repo.html_url}" target="_blank">${repo.name}</a></strong><br>
                         ${repo.description || 'No description.'}
-                        ${repo.has_pages ? `<br><small>👉 <a href="https://${username}.github.io/${repo.name}/" target="_blank">Live Demo</a></small>` : ''}
+                        <br><small>👉 <a href="https://${username}.github.io/${repo.name}/" target="_blank">Live Demo</a></small>
                     `;
                     container.appendChild(div);
                 });
