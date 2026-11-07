@@ -42,7 +42,7 @@
                 const container = document.getElementById('repos');
                 container.innerHTML = '';
                 const pagesRepos = repos.filter(repo => repo.has_pages);
-                repos.forEach(repo => {
+                pagesRepos.forEach(repo => {
                     // Only show public repos
                     const div = document.createElement('div');
                     div.className = 'repo-card';
